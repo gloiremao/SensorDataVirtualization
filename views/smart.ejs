@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A web interface for MQTT">
+    <meta name="author" content="Fabian Affolter">
+
+    <title>Smart Dashboard</title>
+
+    <!-- Bootstrap core CSS -->
+
+    <!---->
+    <!-- Material Design fonts -->
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/icon?family=Material+Icons">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+    
+    <!-- Bootstrap Material Design -->
+    <link rel="stylesheet" type="text/css" href="dist/css/bootstrap-material-design.css">
+    <link rel="stylesheet" type="text/css" href="dist/css/ripples.min.css">
+    
+    <!-- jgPlot -->
+    <link class="include" rel="stylesheet" type="text/css" href="stylesheets/jquery.jqplot.min.css" />
+
+    <link class="include" rel="stylesheet" type="text/css" href="stylesheets/style.css" />
+
+  </head>
+
+  <body>
+    <nav id="nav-top" class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Smart Dashboard</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <p class="navbar-text">Scale box</p>
+          </ul>
+          
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Link</a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
+    
+    <div id="map"></div>
+    
+
+    <div class="container">
+        <div id="id-selector" class="cardview">
+            <label for="sel1" class="col-lg-3 control-label">Bike id:</label>
+            <div class="col-lg-9">
+                <select class="form-control" id="sel1" placeholder="Id">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                </select>
+            </div>
+            
+        </div>
+
+        <div id="sensor-tabs">
+            <div id="sensor-toggle-zone"></div>
+            <div id="menu">
+                <div class="page-header">
+                  <h3>Sensor data <small>click to see detail data</small></h3>
+                </div>
+            </div>
+            
+            
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-lg-9"></div>
+            <div class="col-lg-3">
+                <div class="cardview">
+                    <div class="card-content">
+                        
+                        <div class="card-body">
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+
+    
+
+    
+  </body>
+    <!-- jQuery -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <!-- Sparkline -->
+    <script type="text/javascript" src="javascripts/jquery.sparkline.min.js"></script>
+
+    <script type="text/javascript" src="javascripts/jquery.jqplot.min.js"></script>
+    <script type="text/javascript" src="javascripts/jqplot.canvasTextRenderer.min.js"></script>
+    <script type="text/javascript" src="javascripts/jqplot.canvasAxisLabelRenderer.min.js"></script>
+    <script type="text/javascript" src="javascripts/jqplot.dateAxisRenderer.min.js"></script>
+    
+    
+    <script type="text/javascript" src="dist/js/material.js"></script>
+    <script type="text/javascript" src="dist/js/ripples.js"></script>
+    <script>
+        function myMap() {
+        var mapOptions = {
+            center: new google.maps.LatLng(24.7927831,120.9858145),
+            zoom: 15,
+            mapTypeId: 'roadmap',
+            zoomControl: true,
+            zoomControlOptions: {
+              position: google.maps.ControlPosition.LEFT_CENTER
+            },
+            streetViewControl: false,
+        }
+        var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnwJk9Z9g2lXuBoDz-eY5FL3Riiunz8Dw&callback=myMap"></script>
+
+    <script type="text/javascript">
+        $.material.init();
+    </script>
+    <script type="text/javascript" src="javascripts/script.js"></script>
+    
+
+</html>
