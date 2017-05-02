@@ -1,3 +1,4 @@
-# FogComputingPlatform-MQTT-Panel
+Smart Bike -MQTT-Panel
+==
 
 Base on fabaff/mqtt-panel https://github.com/fabaff/mqtt-panel.
