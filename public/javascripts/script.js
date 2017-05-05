@@ -1,4 +1,7 @@
 var menu_hide = false;
+var route = new Array();
+var last_x = 0; 
+var last_y = 0; 
 
 $(document).ready(function(){
 
@@ -37,7 +40,43 @@ $(document).ready(function(){
 		}
 	);
 
+	$("#demo").click(function(){
+		updateMap(24.7953392,120.9920238,"2");
+	})
+	$("#demo2").click(function(){
+		updateMap(24.7920600,120.9933670,"3");
+	})
+
 });
+
+var lineSymbol = {
+  path: 'M 0,-1 0,1',
+  strokeOpacity: 1,
+  scale: 4
+};
+
+function updateMap(x, y, sensor_values, timestamp){
+	if(last_x == 0 && last_y == 0){
+		setMapMarker(x,y,sensor_values);
+		last_x = x;
+		last_y = y;
+	}else{
+		console.log("updateMap " + x + " " + y);
+		var line = new google.maps.Polyline({
+			path: [{lat: last_x, lng: last_y}, {lat: x, lng: y}],
+			strokeOpacity: 0,
+			icons: [{
+				icon: lineSymbol,
+				offset: '0',
+				repeat: '20px'
+			}],
+			map: map
+        });
+		setMapMarker(x,y,sensor_values);
+		last_x = x;
+		last_y = y;
+	}
+} 
 
 
 var labTemp = new Array();
@@ -219,5 +258,59 @@ var socket = io.connect();
  });
  socket.emit('subscribe', {topic : 'home/#'});
 });
+
+var map;
+function myMap() {
+	var mapOptions = {
+	    center: new google.maps.LatLng(24.7920604,120.9933676),
+	    zoom: 16,
+	    mapTypeId: 'roadmap',
+	    zoomControl: true,
+	    zoomControlOptions: {
+	      position: google.maps.ControlPosition.LEFT_CENTER
+	    },
+	    streetViewControl: false,
+	}
+	map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+}
+
+
+
+var markers = new Array();
+var image_url = "/images/marker_image.png"
+
+function setMapMarker(x,y, text, timestamp){
+	console.log("add marker");
+	var marker = new google.maps.Marker({
+	    position: new google.maps.LatLng(x,y),
+	    map: map,
+	    icon: image_url,
+	    title: text
+	});
+
+
+	var contentString = '<div id="content">'+
+            '<div id="siteNotice">'+
+            '</div>'+
+            '<h3 id="firstHeading" class="firstHeading">'+timestamp+'</h3>'+
+            '<div id="bodyContent">Value: '+
+            text+
+            '</div>'+
+            '</div>';
+
+    var infowindow = new google.maps.InfoWindow({
+          content: contentString,
+          maxWidth: 200
+        });
+
+    marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });
+
+    markers.push(marker);
+
+	//map.setCenter(marker.getPosition());
+}
 
 

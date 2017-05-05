@@ -51,7 +51,8 @@
           </ul>
           
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Link</a></li>
+            <li><a id="demo" href="#">p1</a></li>
+            <li><a id="demo2" href="#">p2</a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
@@ -131,21 +132,9 @@
     <script type="text/javascript" src="dist/js/material.js"></script>
     <script type="text/javascript" src="dist/js/ripples.js"></script>
     <script>
-        function myMap() {
-        var mapOptions = {
-            center: new google.maps.LatLng(24.7927831,120.9858145),
-            zoom: 16,
-            mapTypeId: 'roadmap',
-            zoomControl: true,
-            zoomControlOptions: {
-              position: google.maps.ControlPosition.LEFT_CENTER
-            },
-            streetViewControl: false,
-        }
-        var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-        }
+
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnwJk9Z9g2lXuBoDz-eY5FL3Riiunz8Dw&callback=myMap"></script>
+    
 
     <script type="text/javascript">
         $.material.init();
@@ -153,6 +142,7 @@
 
     <script src="/socket.io/socket.io.js"></script>
     <script type="text/javascript" src="javascripts/script.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnwJk9Z9g2lXuBoDz-eY5FL3Riiunz8Dw&callback=myMap"></script>
     
 
 </html>
