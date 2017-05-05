@@ -76,33 +76,40 @@
         </div>
 
         <div id="sensor-tabs">
+
             <div id="sensor-toggle-zone"></div>
+            <button id="sensor-tabs-dismiss" type="button" class="close" aria-label="Close"><h2>&times;</h2></button>
             <div id="menu">
+                
                 <div class="page-header">
                   <h3>Sensor data <small>click to see detail data</small></h3>
                 </div>
-            </div>
-            
-            
-        </div>
-
-
-
-        <div class="row">
-            <div class="col-lg-9"></div>
-            <div class="col-lg-3">
-                <div class="cardview">
-                    <div class="card-content">
-                        
-                        <div class="card-body">
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                        </div>
-                        
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <table class="table table-striped">
+                        <!-- Lab temperature -->
+                            <tr>
+                                <td width="40%" style="vertical-align:middle;"><h3>Temperature</h3><small id="labTempSensor">(no value recieved)</small></td>
+                                <td style="vertical-align:middle;"><h3 id="labTempValue"> 24 C</h3></td>
+                                <td width="30%" style="vertical-align:middle;"><h4>&nbsp;<span id="labTempLabel" class="label">Offline</span></h4></td>
+                            </tr>
+                            <tr>
+                                <tr>
+                                    <td width="40%" style="vertical-align:middle;"><h3>Head Count</h3><small id="value3">(no value recieved)</small></td>
+                                    <td style="vertical-align:middle;"><h3> 2</h3></div></td>
+                                    <td width="30%" style="vertical-align:middle;"><h4>&nbsp;<span id="value3Label" class="label">Offline</span></h4></td>
+                                </tr>
+                            </tr>
+                        </table>
                     </div>
                 </div>
+
             </div>
-        </div>
-        
+
+            <div id="char-content-box">
+                <div id="labTempChart" style="height:80px; width:400px;"></div>
+            </div>
+        </div>     
         
     </div>
 
@@ -127,7 +134,7 @@
         function myMap() {
         var mapOptions = {
             center: new google.maps.LatLng(24.7927831,120.9858145),
-            zoom: 15,
+            zoom: 16,
             mapTypeId: 'roadmap',
             zoomControl: true,
             zoomControlOptions: {
@@ -143,6 +150,8 @@
     <script type="text/javascript">
         $.material.init();
     </script>
+
+    <script src="/socket.io/socket.io.js"></script>
     <script type="text/javascript" src="javascripts/script.js"></script>
     
 

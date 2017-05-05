@@ -24,6 +24,15 @@ body {
 	z-index: 999;
 }
 
+#char-content-box{
+	background-color: red;
+	position: absolute;
+	width: 400px;
+	height: 100px;
+	bottom: 10px;
+	right: 10px;
+}
+
 #sensor-tabs{
 	background-color: white;
 	position: absolute;
@@ -32,14 +41,17 @@ body {
 	top: 0px;
 	right: 0px;
 	z-index: 1;
+	padding-right: 20px;
 	padding-top: 60px;
+	overflow-y: auto;
+	box-shadow: -1px 0 0 rgba(99,114,130,0.16), 0 0 16px rgba(27,39,51,0.08)
 }
 
 #sensor-toggle-zone{
 	position: absolute;
-	background-color: grey;
 	width: 20px;
 	height: 100vh;
+	top: 0px;
 }
 
 #map{
@@ -50,7 +62,7 @@ body {
 }
 
 #menu{
-	margin-left: 25px;
+	margin-left: 20px;
 	position: relative;
 
 }
