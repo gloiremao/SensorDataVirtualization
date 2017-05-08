@@ -76,9 +76,17 @@
         </div>
 
         <div id="char-content-box" class="cardview">
-            <h4 id="chart_display_name">Sensor <span id="char_timestamp" class="badge"></span>:<small id="chart_value"></small></h4>
+            
+            <div class="row">
+                <div class="col-lg-5"><h4><strong id="chart_display_name">pollution_air_mq5</strong></h4></div>
+                <div class="col-lg-7"><h4>Value: <strong id="chart_value"></strong> <span id="chart_timestamp" class="badge">2017-05-08 17:05</span></h4></div>
+            </div>
+            
             <div>
                 <div id="pollution_air_mq5_chart" class="chart" style="height:100px; width:450px;"></div>
+                <div id="pollution_air_mq7_chart" class="chart" style="height:100px; width:450px;display: none;"></div>
+                <div id="pollution_air_mq131_chart" class="chart" style="height:100px; width:450px;display: none;"></div>
+                <div id="pollution_air_mq135_chart" class="chart" style="height:100px; width:450px;display: none;"></div>
             </div>
         </div>
 
@@ -95,49 +103,47 @@
                     <div class="panel-body">
                         <table class="table table-striped">
                         <!-- Lab temperature -->
-                            <tr>
+                            <tr class="sensorBtn">
                                 <td width="40%" style="vertical-align:middle;"><h3>Microphone</h3><small id="micSensor">(no value recieved)</small></td>
                                 <td style="vertical-align:middle;"><h3 id="mic_value">NA</h3></td>
                                 <td width="30%" style="vertical-align:middle;"><h4>&nbsp;<span id="mic_label" class="label">Offline</span></h4></td>
                             </tr>
-                            <tr>
+                            <tr class="sensorBtn" >
                                 <td width="40%" style="vertical-align:middle;"><h3>Camera</h3><small id="cameraSensor">(no value recieved)</small></td>
                                 <td style="vertical-align:middle;"><h3 id="camera_value">NA</h3></td>
                                 <td width="30%" style="vertical-align:middle;"><h4>&nbsp;<span id="camera_label" class="label">Offline</span></h4></td>
                             </tr>
-                            <tr>
-                                <tr>
-                                    <td width="40%" style="vertical-align:middle;">
-                                        <h3>Pollution_air_mq5</h3>
-                                    </td>
-                                    <td style="vertical-align:middle;">
-                                        <h3 id="pollution_air_mq5_value">NA</h3>
-                                    </td>
-                                    <td width="20%" style="vertical-align:middle;">
-                                        <h4>&nbsp;<span id="pollution_air_mq5_label" class="label">Offline</span></h4>
-                                    </td>
-                                </tr>
+                            
+                            <tr class="sensorBtn" target="pollution_air_mq5"> 
+                                <a href="#"  >
+                                <td width="40%" style="vertical-align:middle;">
+                                    <h3>Pollution_air_mq5</h3>
+                                </td>
+                                <td style="vertical-align:middle;">
+                                    <h3 id="pollution_air_mq5_value">NA</h3>
+                                </td>
+                                <td width="20%" style="vertical-align:middle;">
+                                    <h4>&nbsp;<span id="pollution_air_mq5_label" class="label">Offline</span></h4>
+                                </td>
+                                </a>
                             </tr>
-                            <tr>
-                                <tr>
-                                    <td width="40%" style="vertical-align:middle;"><h3>Pollution_air_mq7</h3></td>
-                                    <td style="vertical-align:middle;"><h3 id="pollution_air_mq7_value">NA</h3></td>
-                                    <td width="30%" style="vertical-align:middle;"><h4>&nbsp;<span id="pollution_air_mq7_label" class="label">Offline</span></h4></td>
-                                </tr>
+                            
+                            <tr class="sensorBtn" target="pollution_air_mq7">
+                                <td width="40%" style="vertical-align:middle;"><h3>Pollution_air_mq7</h3></td>
+                                <td style="vertical-align:middle;"><h3 id="pollution_air_mq7_value">NA</h3></td>
+                                <td width="30%" style="vertical-align:middle;"><h4>&nbsp;<span id="pollution_air_mq7_label" class="label">Offline</span></h4></td>
                             </tr>
-                            <tr>
-                                <tr>
-                                    <td width="40%" style="vertical-align:middle;"><h3>Pollution_air_mq131</h3></td>
-                                    <td style="vertical-align:middle;"><h3 id="pollution_air_mq131_value">NA</h3></td>
-                                    <td width="30%" style="vertical-align:middle;"><h4>&nbsp;<span id="pollution_air_mq131_label" class="label">Offline</span></h4></td>
-                                </tr>
+                            
+                            <tr class="sensorBtn" target="pollution_air_mq131">
+                                <td width="40%" style="vertical-align:middle;"><h3>Pollution_air_mq131</h3></td>
+                                <td style="vertical-align:middle;"><h3 id="pollution_air_mq131_value">NA</h3></td>
+                                <td width="30%" style="vertical-align:middle;"><h4>&nbsp;<span id="pollution_air_mq131_label" class="label">Offline</span></h4></td>
                             </tr>
-                            <tr>
-                                <tr>
-                                    <td width="40%" style="vertical-align:middle;"><h3>Pollution_air_mq135</h3></td>
-                                    <td style="vertical-align:middle;"><h3 id="pollution_air_mq135_value">NA</h3></td>
-                                    <td width="30%" style="vertical-align:middle;"><h4>&nbsp;<span id="pollution_air_mq135_label" class="label">Offline</span></h4></td>
-                                </tr>
+                            
+                            <tr class="sensorBtn" target="pollution_air_mq135">
+                                <td width="40%" style="vertical-align:middle;"><h3>Pollution_air_mq135</h3></td>
+                                <td style="vertical-align:middle;"><h3 id="pollution_air_mq135_value">NA</h3></td>
+                                <td width="30%" style="vertical-align:middle;"><h4>&nbsp;<span id="pollution_air_mq135_label" class="label">Offline</span></h4></td>
                             </tr>
 
                         </table>

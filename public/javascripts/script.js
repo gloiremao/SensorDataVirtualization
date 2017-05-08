@@ -2,8 +2,22 @@ var menu_hide = false;
 var route = new Array();
 var last_x = 0; 
 var last_y = 0; 
+var display_sensor = 'pollution_air_mq5';
 
 $(document).ready(function(){
+
+    $(".sensorBtn").click(function(e){
+        var target = $(this).attr("target");
+        //console.log("click "+ target);
+        $("#chart_display_name").text(target);
+        $("#chart_value").text("NA");
+        $(".chart").hide();
+        $("#"+target+"_chart").show();
+        display_sensor = target;
+
+    });
+
+
 
     $('#chartTab a').click(function (e) {
         e.preventDefault()
@@ -85,6 +99,9 @@ function updateMap(x, y, sensor_values, timestamp){
 
 
 var pollution_air_mq5 = new Array();
+var pollution_air_mq7 = new Array();
+var pollution_air_mq131 = new Array();
+var pollution_air_mq135 = new Array();
 var headCount = new Array();
 var socket = io.connect();
 //var socket = io.connect('http://localhost:5000');
@@ -97,42 +114,48 @@ var socket = io.connect();
             //console.log(String.fromCharCode.apply(null, new Uint8Array(msg.payload)));
 
             var payload = String.fromCharCode.apply(null, new Uint8Array(msg.payload));
-            console.log(payload);
+            //console.log(payload);
+            payload = payload.replace("NaN","null");
             var sensorData = JSON.parse(payload);
 
-            var timestamp = Math.round((new Date()).getTime() / 1000);
+            var current_time = new Date();
+            var timestamp = Math.round(current_time.getTime()/1000);
+            var display_date = current_time.toLocaleString(); 
 
-            //$('#topic').html(msg.topic);
-            //$('#message').html(msg.topic + ', ' + payload);
-            console.log(sensorData.d.event);
+            //console.log(sensorData.d.event);
             switch(sensorData.d.event){
                 case 'microphone':
-                    console.log(sensorData.d.event);
+                    //console.log(sensorData.d.event);
                     break;
                 case 'camera':
-                    console.log(sensorData.d.event);
+                    //console.log(sensorData.d.event);
                     break;
                 case 'location_update':
-                    console.log(sensorData.d.event);
+                    //console.log(sensorData.d.event);
+                    var lat = sensorData.d.value.lat; 
+                    var lon = sensorData.d.value.lon;
+                    updateMap(lat,lon,display_date);
                     break;
                 case 'pollution_air_mq5':
-                    console.log(sensorData.d.event);
+                    //console.log(sensorData.d.event);
                     var value = sensorData.d.value;
                     $('#pollution_air_mq5_value').text(value);
                     $('#pollution_air_mq5_label').text('Activated');
                     $('#pollution_air_mq5_label').addClass('label-primary');
 
                     //draw chart
-                    $("#chart_display_name").text('pollution_air_mq5');
-                    $("#chart_timestamp").text(timestamp);
-		    $("#chart_value").text(value);
-		    var entry = new Array();
+                    if(display_sensor == 'pollution_air_mq5'){
+                        $("#chart_timestamp").text(display_date);
+                        $("#chart_value").text(value);
+                    }
+                    
+		            var entry = new Array();
                     entry.push(timestamp);
                     entry.push(parseFloat(value));
                     pollution_air_mq5.push(entry);
                     // Show only 20 values
                     if (pollution_air_mq5.length >= 20) {
-                        pollution_air_mq5.shift()
+                        pollution_air_mq5.shift();
                     }
 
                     var pollution_air_mq5_plot = $.jqplot ('pollution_air_mq5_chart', [pollution_air_mq5], {
@@ -175,25 +198,182 @@ var socket = io.connect();
 
                     break;
                 case 'pollution_air_mq7':
-                    console.log(sensorData.d.event);
+                    //console.log(sensorData.d.event);
                     var value = sensorData.d.value;
                     $('#pollution_air_mq7_value').text(value);
                     $('#pollution_air_mq7_label').text('Activated');
                     $('#pollution_air_mq7_label').addClass('label-primary');
+
+                    if(display_sensor == 'pollution_air_mq7'){
+                        $("#chart_timestamp").text(display_date);
+                        $("#chart_value").text(value);
+                    }
+                    
+                    var entry = new Array();
+                    entry.push(timestamp);
+                    entry.push(parseFloat(value));
+                    pollution_air_mq7.push(entry);
+                    // Show only 20 values
+                    if (pollution_air_mq7.length >= 20) {
+                        pollution_air_mq7.shift();
+                    }
+
+                    var pollution_air_mq7_plot = $.jqplot ('pollution_air_mq7_chart', [pollution_air_mq7], {
+                        axesDefaults: {
+                            labelRenderer: $.jqplot.CanvasAxisLabelRenderer,
+                            tickOptions: {
+                                showMark: false,
+                                showGridline: false,
+                                show: false,
+                                showLabel: false,
+                            }
+                          },
+                        grid: {
+                            gridLineColor: '#FFFFFF',
+                            borderWidth: 0,
+                            shadow: false,
+                        },
+                        seriesDefaults: {
+                            rendererOptions: {
+                                smooth: true
+                            },
+                            showMarker: false,
+                            lineWidth: 2,
+                          },
+                          axes: {
+                            xaxis: {
+                              renderer:$.jqplot.DateAxisRenderer,
+                              tickOptions:{
+                                formatString:'%T'
+                              },
+                              pad: 0
+                            },
+                            yaxis: {
+                                tickOptions:{
+                                    formatString: '%.1f'
+                                }
+                            }
+                        }
+                    });
                     break;
                 case 'pollution_air_mq131':
-                    console.log(sensorData.d.event);
+                    //console.log(sensorData.d.event);
                     var value = sensorData.d.value;
                     $('#pollution_air_mq131_value').text(value);
                     $('#pollution_air_mq131_label').text('Activated');
                     $('#pollution_air_mq131_label').addClass('label-primary');
+
+                    if(display_sensor == 'pollution_air_mq131'){
+                        $("#chart_timestamp").text(display_date);
+                        $("#chart_value").text(value);
+                    }
+
+                    var entry = new Array();
+                    entry.push(timestamp);
+                    entry.push(parseFloat(value));
+                    pollution_air_mq131.push(entry);
+                    // Show only 20 values
+                    if (pollution_air_mq131.length >= 20) {
+                        pollution_air_mq131.shift();
+                    }
+
+                    var pollution_air_mq131_plot = $.jqplot ('pollution_air_mq131_chart', [pollution_air_mq131], {
+                        axesDefaults: {
+                            labelRenderer: $.jqplot.CanvasAxisLabelRenderer,
+                            tickOptions: {
+                                showMark: false,
+                                showGridline: false,
+                                show: false,
+                                showLabel: false,
+                            }
+                          },
+                        grid: {
+                            gridLineColor: '#FFFFFF',
+                            borderWidth: 0,
+                            shadow: false,
+                        },
+                        seriesDefaults: {
+                            rendererOptions: {
+                                smooth: true
+                            },
+                            showMarker: false,
+                            lineWidth: 2,
+                          },
+                          axes: {
+                            xaxis: {
+                              renderer:$.jqplot.DateAxisRenderer,
+                              tickOptions:{
+                                formatString:'%T'
+                              },
+                              pad: 0
+                            },
+                            yaxis: {
+                                tickOptions:{
+                                    formatString: '%.1f'
+                                }
+                            }
+                        }
+                    });
                     break;
                 case 'pollution_air_mq135':
-                    console.log(sensorData.d.event);
+                    //console.log(sensorData.d.event);
                     var value = sensorData.d.value;
                     $('#pollution_air_mq135_value').text(value);
                     $('#pollution_air_mq135_label').text('Activated');
                     $('#pollution_air_mq135_label').addClass('label-primary');
+
+                    if(display_sensor == 'pollution_air_mq135'){
+                        $("#chart_timestamp").text(display_date);
+                        $("#chart_value").text(value);
+                    }
+
+                    var entry = new Array();
+                    entry.push(timestamp);
+                    entry.push(parseFloat(value));
+                    pollution_air_mq135.push(entry);
+                    // Show only 20 values
+                    if (pollution_air_mq135.length >= 20) {
+                        pollution_air_mq135.shift();
+                    }
+
+                    var pollution_air_mq135_plot = $.jqplot ('pollution_air_mq135_chart', [pollution_air_mq135], {
+                        axesDefaults: {
+                            labelRenderer: $.jqplot.CanvasAxisLabelRenderer,
+                            tickOptions: {
+                                showMark: false,
+                                showGridline: false,
+                                show: false,
+                                showLabel: false,
+                            }
+                          },
+                        grid: {
+                            gridLineColor: '#FFFFFF',
+                            borderWidth: 0,
+                            shadow: false,
+                        },
+                        seriesDefaults: {
+                            rendererOptions: {
+                                smooth: true
+                            },
+                            showMarker: false,
+                            lineWidth: 2,
+                          },
+                          axes: {
+                            xaxis: {
+                              renderer:$.jqplot.DateAxisRenderer,
+                              tickOptions:{
+                                formatString:'%T'
+                              },
+                              pad: 0
+                            },
+                            yaxis: {
+                                tickOptions:{
+                                    formatString: '%.1f'
+                                }
+                            }
+                        }
+                    });
+
                     break;
             }
 

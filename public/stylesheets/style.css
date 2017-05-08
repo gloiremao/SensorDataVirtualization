@@ -34,6 +34,14 @@ body {
 	left: 10px;
 }
 
+.sensorBtn{
+	cursor: pointer;
+}
+
+.sensorBtn:hover{
+	background-color: rgba(105, 165, 110, 0.29) !important;
+}
+
 #sensor-tabs{
 	background-color: white;
 	position: absolute;
