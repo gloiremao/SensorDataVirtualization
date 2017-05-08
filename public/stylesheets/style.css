@@ -26,12 +26,12 @@ body {
 }
 
 #char-content-box{
-	background-color: red;
+	background-color: white;
 	position: absolute;
-	width: 95%;
-	height: 100px;
+	width: 500px;
+	height: 120px;
 	bottom: 10px;
-	right: 10px;
+	left: 10px;
 }
 
 #sensor-tabs{

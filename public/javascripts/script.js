@@ -97,18 +97,18 @@ var socket = io.connect();
             //console.log(String.fromCharCode.apply(null, new Uint8Array(msg.payload)));
 
             var payload = String.fromCharCode.apply(null, new Uint8Array(msg.payload));
-	    console.log(payload);
+            console.log(payload);
             var sensorData = JSON.parse(payload);
 
             var timestamp = Math.round((new Date()).getTime() / 1000);
 
             //$('#topic').html(msg.topic);
             //$('#message').html(msg.topic + ', ' + payload);
-	    console.log(sensorData.d.event);
+            console.log(sensorData.d.event);
             switch(sensorData.d.event){
                 case 'microphone':
                     console.log(sensorData.d.event);
-		    break;
+                    break;
                 case 'camera':
                     console.log(sensorData.d.event);
                     break;
@@ -117,15 +117,31 @@ var socket = io.connect();
                     break;
                 case 'pollution_air_mq5':
                     console.log(sensorData.d.event);
+                    var value = sensorData.d.value;
+                    $('#pollution_air_mq5_value'+).text(value);
+                    $('#pollution_air_mq5_label').text('Activated');
+                    $('#pollution_air_mq5_label').addClass('label-default');
                     break;
                 case 'pollution_air_mq7':
                     console.log(sensorData.d.event);
+                    var value = sensorData.d.value;
+                    $('#pollution_air_mq5_value'+).text(value);
+                    $('#pollution_air_mq5_label').text('Activated');
+                    $('#pollution_air_mq5_label').addClass('label-default');
                     break;
                 case 'pollution_air_mq131':
                     console.log(sensorData.d.event);
+                    var value = sensorData.d.value;
+                    $('#pollution_air_mq131_value'+).text(value);
+                    $('#pollution_air_mq131_label').text('Activated');
+                    $('#pollution_air_mq131_label').addClass('label-default');
                     break;
                 case 'pollution_air_mq135':
                     console.log(sensorData.d.event);
+                    var value = sensorData.d.value;
+                    $('#pollution_air_mq135_value'+).text(value);
+                    $('#pollution_air_mq135_label').text('Activated');
+                    $('#pollution_air_mq135_label').addClass('label-default');
                     break;
             }
 
@@ -289,7 +305,7 @@ var socket = io.connect();
                 default: console.log('Error: Data do not match the MQTT topic.'); break;
             }*/
  });
- socket.emit('subscribe', {topic : 'home/#'});
+ socket.emit('subscribe', {topic : 'iot-1/d/b827ebdf52bd/evt/#'});
 });
 
 var map;
