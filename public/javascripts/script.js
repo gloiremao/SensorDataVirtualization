@@ -91,17 +91,45 @@ var socket = io.connect();
     socket.on('connect', function () {
         socket.on('mqtt', function (msg) {
             var message = msg.topic.split('/');
+
             var area = message[1];
 
             console.log(String.fromCharCode.apply(null, new Uint8Array(msg.payload)));
 
             var payload = String.fromCharCode.apply(null, new Uint8Array(msg.payload));
 
+            var sensorData = JSON.parse(payload);
+
             var timestamp = Math.round((new Date()).getTime() / 1000);
 
-            $('#topic').html(msg.topic);
-            $('#message').html(msg.topic + ', ' + payload);
-            switch (area) {
+            //$('#topic').html(msg.topic);
+            //$('#message').html(msg.topic + ', ' + payload);
+
+            switch(sensorData.event){
+                case 'microphone':
+                    console.log(sensorData.event);
+                    break;
+                case 'camera':
+                    console.log(sensorData.event);
+                    break;
+                case 'location_update':
+                    console.log(sensorData.event);
+                    break;
+                case 'pollution_air_mq5':
+                    console.log(sensorData.event);
+                    break;
+                case 'pollution_air_mq7':
+                    console.log(sensorData.event);
+                    break;
+                case 'pollution_air_mq131':
+                    console.log(sensorData.event);
+                    break;
+                case 'pollution_air_mq135':
+                    console.log(sensorData.event);
+                    break;
+            }
+
+            /*switch (area) {
                 case 'front':
                     $('#value1').html('(Switch value: ' + payload + ')');
                     if (payload == 'true') {
@@ -259,7 +287,7 @@ var socket = io.connect();
                     }
                     break;
                 default: console.log('Error: Data do not match the MQTT topic.'); break;
-            }
+            }*/
  });
  socket.emit('subscribe', {topic : 'home/#'});
 });
@@ -315,7 +343,7 @@ function setMapMarker(x,y, text, timestamp){
 
     markers.push(marker);
 
-	//map.setCenter(marker.getPosition());
+	map.setCenter(new google.maps.LatLng(x,y));
 }
 
 
