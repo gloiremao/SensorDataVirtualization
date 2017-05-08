@@ -118,28 +118,28 @@ var socket = io.connect();
                 case 'pollution_air_mq5':
                     console.log(sensorData.d.event);
                     var value = sensorData.d.value;
-                    $('#pollution_air_mq5_value'+).text(value);
+                    $('#pollution_air_mq5_value').text(value);
                     $('#pollution_air_mq5_label').text('Activated');
                     $('#pollution_air_mq5_label').addClass('label-default');
                     break;
                 case 'pollution_air_mq7':
                     console.log(sensorData.d.event);
                     var value = sensorData.d.value;
-                    $('#pollution_air_mq7_value'+).text(value);
+                    $('#pollution_air_mq7_value').text(value);
                     $('#pollution_air_mq7_label').text('Activated');
                     $('#pollution_air_mq7_label').addClass('label-default');
                     break;
                 case 'pollution_air_mq131':
                     console.log(sensorData.d.event);
                     var value = sensorData.d.value;
-                    $('#pollution_air_mq131_value'+).text(value);
+                    $('#pollution_air_mq131_value').text(value);
                     $('#pollution_air_mq131_label').text('Activated');
                     $('#pollution_air_mq131_label').addClass('label-default');
                     break;
                 case 'pollution_air_mq135':
                     console.log(sensorData.d.event);
                     var value = sensorData.d.value;
-                    $('#pollution_air_mq135_value'+).text(value);
+                    $('#pollution_air_mq135_value').text(value);
                     $('#pollution_air_mq135_label').text('Activated');
                     $('#pollution_air_mq135_label').addClass('label-default');
                     break;
