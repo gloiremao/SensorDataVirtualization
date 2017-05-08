@@ -124,7 +124,9 @@ var socket = io.connect();
 
                     //draw chart
                     $("#chart_display_name").text('pollution_air_mq5');
-                    var entry = new Array();
+                    $("#chart_timestamp").text(timestamp);
+		    $("#chart_value").text(value);
+		    var entry = new Array();
                     entry.push(timestamp);
                     entry.push(parseFloat(value));
                     pollution_air_mq5.push(entry);
