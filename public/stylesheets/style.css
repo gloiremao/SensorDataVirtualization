@@ -63,6 +63,7 @@ body {
 }
 
 #menu{
+	overflow-y: scroll;
 	margin-left: 20px;
 	position: relative;
 
