@@ -84,7 +84,7 @@ function updateMap(x, y, sensor_values, timestamp){
 } 
 
 
-var labTemp = new Array();
+var pollution_air_mq5 = new Array();
 var headCount = new Array();
 var socket = io.connect();
 //var socket = io.connect('http://localhost:5000');
@@ -120,28 +120,78 @@ var socket = io.connect();
                     var value = sensorData.d.value;
                     $('#pollution_air_mq5_value').text(value);
                     $('#pollution_air_mq5_label').text('Activated');
-                    $('#pollution_air_mq5_label').addClass('label-default');
+                    $('#pollution_air_mq5_label').addClass('label-primary');
+
+                    //draw chart
+                    $("#chart_display_name").text('pollution_air_mq5');
+                    var entry = new Array();
+                    entry.push(timestamp);
+                    entry.push(parseFloat(value));
+                    pollution_air_mq5.push(entry);
+                    // Show only 20 values
+                    if (pollution_air_mq5.length >= 20) {
+                        pollution_air_mq5.shift()
+                    }
+
+                    var pollution_air_mq5_plot = $.jqplot ('pollution_air_mq5_chart', [pollution_air_mq5], {
+                        axesDefaults: {
+                            labelRenderer: $.jqplot.CanvasAxisLabelRenderer,
+                            tickOptions: {
+                                showMark: false,
+                                showGridline: false,
+                                show: false,
+                                showLabel: false,
+                            }
+                          },
+                        grid: {
+                            gridLineColor: '#FFFFFF',
+                            borderWidth: 0,
+                            shadow: false,
+                        },
+                        seriesDefaults: {
+                            rendererOptions: {
+                                smooth: true
+                            },
+                            showMarker: false,
+                            lineWidth: 2,
+                          },
+                          axes: {
+                            xaxis: {
+                              renderer:$.jqplot.DateAxisRenderer,
+                              tickOptions:{
+                                formatString:'%T'
+                              },
+                              pad: 0
+                            },
+                            yaxis: {
+                                tickOptions:{
+                                    formatString: '%.1f'
+                                }
+                            }
+                        }
+                    });
+
                     break;
                 case 'pollution_air_mq7':
                     console.log(sensorData.d.event);
                     var value = sensorData.d.value;
                     $('#pollution_air_mq7_value').text(value);
                     $('#pollution_air_mq7_label').text('Activated');
-                    $('#pollution_air_mq7_label').addClass('label-default');
+                    $('#pollution_air_mq7_label').addClass('label-primary');
                     break;
                 case 'pollution_air_mq131':
                     console.log(sensorData.d.event);
                     var value = sensorData.d.value;
                     $('#pollution_air_mq131_value').text(value);
                     $('#pollution_air_mq131_label').text('Activated');
-                    $('#pollution_air_mq131_label').addClass('label-default');
+                    $('#pollution_air_mq131_label').addClass('label-primary');
                     break;
                 case 'pollution_air_mq135':
                     console.log(sensorData.d.event);
                     var value = sensorData.d.value;
                     $('#pollution_air_mq135_value').text(value);
                     $('#pollution_air_mq135_label').text('Activated');
-                    $('#pollution_air_mq135_label').addClass('label-default');
+                    $('#pollution_air_mq135_label').addClass('label-primary');
                     break;
             }
 
