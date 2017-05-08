@@ -94,38 +94,38 @@ var socket = io.connect();
 
             var area = message[1];
 
-            console.log(String.fromCharCode.apply(null, new Uint8Array(msg.payload)));
+            //console.log(String.fromCharCode.apply(null, new Uint8Array(msg.payload)));
 
             var payload = String.fromCharCode.apply(null, new Uint8Array(msg.payload));
-
+	    console.log(payload);
             var sensorData = JSON.parse(payload);
 
             var timestamp = Math.round((new Date()).getTime() / 1000);
 
             //$('#topic').html(msg.topic);
             //$('#message').html(msg.topic + ', ' + payload);
-
-            switch(sensorData.event){
+	    console.log(sensorData.d.event);
+            switch(sensorData.d.event){
                 case 'microphone':
-                    console.log(sensorData.event);
-                    break;
+                    console.log(sensorData.d.event);
+		    break;
                 case 'camera':
-                    console.log(sensorData.event);
+                    console.log(sensorData.d.event);
                     break;
                 case 'location_update':
-                    console.log(sensorData.event);
+                    console.log(sensorData.d.event);
                     break;
                 case 'pollution_air_mq5':
-                    console.log(sensorData.event);
+                    console.log(sensorData.d.event);
                     break;
                 case 'pollution_air_mq7':
-                    console.log(sensorData.event);
+                    console.log(sensorData.d.event);
                     break;
                 case 'pollution_air_mq131':
-                    console.log(sensorData.event);
+                    console.log(sensorData.d.event);
                     break;
                 case 'pollution_air_mq135':
-                    console.log(sensorData.event);
+                    console.log(sensorData.d.event);
                     break;
             }
 
