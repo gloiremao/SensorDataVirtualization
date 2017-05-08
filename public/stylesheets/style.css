@@ -14,6 +14,7 @@ body {
 	height: 50px;
 	position: absolute;
 	padding: 5px;
+	margin-left: 20px;
 }
 
 #id-selector .form-group {
@@ -27,7 +28,7 @@ body {
 #char-content-box{
 	background-color: red;
 	position: absolute;
-	width: 400px;
+	width: 95%;
 	height: 100px;
 	bottom: 10px;
 	right: 10px;
@@ -36,7 +37,7 @@ body {
 #sensor-tabs{
 	background-color: white;
 	position: absolute;
-	width: 420px;
+	width: 35%;
 	height: 100vh;
 	top: 0px;
 	right: 0px;

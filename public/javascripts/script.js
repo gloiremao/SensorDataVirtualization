@@ -5,6 +5,11 @@ var last_y = 0;
 
 $(document).ready(function(){
 
+    $('#chartTab a').click(function (e) {
+        e.preventDefault()
+        $(this).tab('show')
+    })
+
 	//handle menu toggle
 	$("#sensor-tabs").click(
 		function(){
@@ -18,12 +23,12 @@ $(document).ready(function(){
 	$( "#sensor-tabs" ).hover(
 		function() {
 			if (menu_hide){
-				$("#sensor-tabs").animate({"right": "-390px"}, 250);
+				$("#sensor-tabs").animate({"right": "-33%"}, 250);
 			}
 			
 		}, function() {
 			if(menu_hide){
-				$("#sensor-tabs").animate({"right": "-400px"}, 250);
+				$("#sensor-tabs").animate({"right": "-34%"}, 250);
 			}
 			
 		}
@@ -32,7 +37,7 @@ $(document).ready(function(){
 	$( "#sensor-tabs-dismiss" ).click(
 		function(){
 			if (!menu_hide){
-				$("#sensor-tabs").animate({"right": "-400px"}, 250, function(){
+				$("#sensor-tabs").animate({"right": "-34%"}, 250, function(){
 					menu_hide = true;
 				});
 				
@@ -173,7 +178,7 @@ var socket = io.connect();
                 case 'labTemp':
                     $('#labTempSensor').html('(Sensor value: ' + payload + ')');
                     $('#labTempValue').text(payload + '°C');
-                    $('#labTempLabel').text('Online');
+                    $('#labTempLabel').text('Activated');
                     $('#labTempLabel').removeClass('').addClass('label-default');
 
                     var entry = new Array();
